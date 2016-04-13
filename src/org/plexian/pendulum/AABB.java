@@ -6,12 +6,20 @@ package org.plexian.pendulum;
  *
  */
 public class AABB{
-   public Vector2d pos, size;
+	/**
+	 * The position of the AABB.
+	 */
+   public Vector2d pos;
    
    /**
-    * 
-    * @param pos
-    * @param size
+    * The size of the AABB.
+    */
+   public Vector2d size;
+   
+   /**
+    * Creates a new instance of AABB.
+    * @param pos The initial position of the AABB.
+    * @param size The initial size of the AABB.
     */
    public AABB(Vector2d pos, Vector2d size){
       this.pos = pos;
@@ -19,7 +27,7 @@ public class AABB{
    }
    
    /**
-    * Check if two AABBs colide.
+    * Check if two AABBs collide.
     * @param a The first AABB.
     * @param b The second AABB.
     * @return True if there is a collision between a & b, false if not
@@ -49,11 +57,22 @@ public class AABB{
       return false;
    }
    
+
+   /**
+    * Move the AABB to a position.
+    * @param x The X-coordinate to move to.
+    * @param y The Y-coordinate to move to.
+    */
    public void move(double x, double y){
 	   this.pos.setX(x);
 	   this.pos.setY(y);
    }
    
+   /**
+    * Resize the AABB.
+    * @param sizeX The new size of the AABB on the X-Axis.
+    * @param sizeY The new size of the AABB on the Y-Axis.
+    */
    public void resize(double sizeX, double sizeY){
 	   this.size.setX(sizeX);
 	   this.size.setY(sizeY);

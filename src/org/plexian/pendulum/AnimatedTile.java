@@ -1,6 +1,14 @@
 package org.plexian.pendulum;
 
+/**
+ * Provides a way to animate tiles.
+ * @author walt
+ * @category Tile
+ */
 public abstract class AnimatedTile extends Tile {
+	/**
+	 * The current stage of the animation with each stage being a frame.
+	 */
 	protected int stage;
 
 	/**
@@ -9,5 +17,10 @@ public abstract class AnimatedTile extends Tile {
 	 * @return The id of the next stage's tile.
 	 */
 	public abstract int animate(int stage);
+	
+	/**
+	 * Get the last stage number for this tile..
+	 * @return The last stage number for this tile.
+	 */
 	public abstract int getMaxStage();
 }

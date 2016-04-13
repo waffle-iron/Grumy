@@ -15,8 +15,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.evilco.mc.nbt.stream.NbtInputStream;
-import com.evilco.mc.nbt.stream.NbtOutputStream;
 
 public class World {
 	public List entityList = new ArrayList();
@@ -45,10 +43,8 @@ public class World {
 	private ParticleFactory factory;
 	private Player player;
 	private Anti enemy;
-	private NbtInputStream nbtInputStream;
-	private NbtOutputStream nbtOutputStream;
-	
-	/**
+
+	/*
 	 * Creates a new instance of World with name name. If world exists, it is loaded
 	 * @param name The name of the world.
 	 */

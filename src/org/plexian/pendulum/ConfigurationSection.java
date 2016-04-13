@@ -4,9 +4,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Provides all the methods needed for sections of configuration/whole configurations.
+ * @author walt
+ * @category Configuration
+ */
 public class ConfigurationSection extends Configuration {
+	/**
+	 * This map stores all the data for the configuration.
+	 */
 	public Map<String, Object> dataMap = new HashMap<String, Object>();
 	
+	/**
+	 * Create a new ConfigurationSection
+	 * @param dataMap The initial values for the data map.
+	 */
 	public ConfigurationSection(Map<String, Object> dataMap){
 		this.dataMap.putAll(dataMap);
 	}
@@ -39,6 +51,11 @@ public class ConfigurationSection extends Configuration {
 		return currentSection;
 	}
 	
+	/**
+	 * Get an integer at position $key.
+	 * @param key The location of the integer.
+	 * @return The integer at location $key or null.
+	 */
 	public int getInt(String key) {
 		/**
 		 * Basically if the user want's to fetch: users.walt.id, we need to descend all the way down to
@@ -59,6 +76,11 @@ public class ConfigurationSection extends Configuration {
 		return (Integer)this.dataMap.get(key);
 	}
 
+	/**
+	 * Get a double at position $key.
+	 * @param key The location of the double.
+	 * @return The double or null.
+	 */
 	public double getDouble(String key) {
 		/**
 		 * Basically if the user want's to fetch: users.walt.id, we need to descend all the way down to
@@ -79,6 +101,11 @@ public class ConfigurationSection extends Configuration {
 		return (Double)this.dataMap.get(key);
 	}
 
+	/**
+	 * Get a float at position $key
+	 * @param key The location of the float.
+	 * @return The float at locaiton $key.
+	 */
 	public float getFloat(String key) {
 		/**
 		 * Basically if the user want's to fetch: users.walt.id, we need to descend all the way down to
@@ -99,6 +126,11 @@ public class ConfigurationSection extends Configuration {
 		return (Float)this.dataMap.get(key);
 	}
 
+	/**
+	 * Get a boolean at position $key
+	 * @param key The location of the boolean.
+	 * @return The boolean at location $key.
+	 */
 	public boolean getBoolean(String key) {
 		/**
 		 * Basically if the user want's to fetch: users.walt.id, we need to descend all the way down to
@@ -119,6 +151,11 @@ public class ConfigurationSection extends Configuration {
 		return (boolean)this.dataMap.get(key);
 	}
 
+	/**
+	 * Get a byte at location $key
+	 * @param key The location to get a byte at.
+	 * @return Byte at location $key.
+	 */
 	public byte getByte(String key) {
 		/**
 		 * Basically if the user want's to fetch: users.walt.id, we need to descend all the way down to
@@ -139,6 +176,11 @@ public class ConfigurationSection extends Configuration {
 		return (byte)this.dataMap.get(key);
 	}
 
+	/**
+	 * Get a string at location $key.
+	 * @param key The location to get a string at.
+	 * @return The string at location $key.
+	 */
 	public String getString(String key) {
 		/**
 		 * Basically if the user want's to fetch: users.walt.id, we need to descend all the way down to
@@ -163,6 +205,11 @@ public class ConfigurationSection extends Configuration {
 		return (String)this.dataMap.get(key);
 	}
 
+	/**
+	 * Get a configuration section at location $key. 
+	 * @param key The location of the configuration section.
+	 * @return The configuration section at $key.
+	 */
 	public ConfigurationSection getConfigurationSection(String key){
 		/**
 		 * Basically if the user want's to fetch: users.walt.id, we need to descend all the way down to
@@ -183,6 +230,11 @@ public class ConfigurationSection extends Configuration {
 		return new ConfigurationSection((Map<String, Object>)(this.dataMap.get(key) != null ? this.dataMap.get(key) : new HashMap<String, Object>()));
 	}
 
+	/**
+	 * Get a map (Map<String, Object>) at location $key.
+	 * @param key The location of the map.
+	 * @return The map at location $key.
+	 */
 	public Map<String, Object> getMap(String key) {
 		/**
 		 * Basically if the user want's to fetch: users.walt.id, we need to descend all the way down to
@@ -204,9 +256,18 @@ public class ConfigurationSection extends Configuration {
 	}
 
 	/**
-	 * 
-	 * @param key
-	 * @param value
+	 * Get a list from the data map at location $key.
+	 * @param key The location of the list.
+	 * @return The list at location $key
+	 */
+	public List<Object> getList(String key){
+		return (List<Object>)this.dataMap.get(key);
+	}
+	
+	/**
+	 * Add an object to the data map.
+	 * @param key The key for the map.
+	 * @param value The value to put into the map.
 	 */
 	public void put(String key, Object value) {
 		/**
@@ -228,6 +289,11 @@ public class ConfigurationSection extends Configuration {
 		this.dataMap.put(key, value);
 	}
 
+	/**
+	 * Put a hashmap's contents into the map.
+	 * @param key The location to put the hashmap at.
+	 * @param map The map to put.
+	 */
 	public void putHashMap(String key, HashMap<String, Object> map) {
 		/**
 		 * Basically if the user want's to put: users.walt.id, we need to descend all the way down to
@@ -246,9 +312,5 @@ public class ConfigurationSection extends Configuration {
 		 * No .s in the path, so we just directly lookup the object.
 		 */
 		this.dataMap.putAll(map);
-	}
-	
-	public List<Object> getList(String key){
-		return (List<Object>)this.dataMap.get(key);
 	}
 }

@@ -22,12 +22,12 @@ public class Game {
 	/**
 	 * The size of the player's character in OpenGL-pixels.
 	 */
-	public static float PLAYER_SIZE = 65;
+	public static float PLAYER_SIZE = 55;
 	
 	/**
 	 * The size of a tile in OpenGL-pixels.
 	 */
-	public static float TILE_SIZE = 65;
+	public static float TILE_SIZE = 55;
 	
 	/**
 	 * The size of a chunk in tiles.

@@ -13,6 +13,11 @@ public enum GameMode {
 		return id;
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public static GameMode getById(int id){
 		for(GameMode gm : GameMode.values()){
 			if(gm.getId() == id){

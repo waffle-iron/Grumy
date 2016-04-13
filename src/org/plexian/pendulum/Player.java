@@ -15,11 +15,12 @@ import org.lwjgl.opengl.GL11;
  * @author walt
  */
 public class Player extends LivingEntity{
-	public static float STANDARD_VELOCITY = 1.0f;
+	public float STANDARD_VELOCITY = 1.0f;
 	private boolean jumpPressed, jumpWasPressed, jumpWasPressedTwo;
 	private int jumps = 2;
 	private double delta;
 	private Tile sprite;
+	private PlayerEffect effects;
 	
 	/**
 	 * Creates a player at location.
@@ -28,7 +29,9 @@ public class Player extends LivingEntity{
 	public Player(Location location) {
 		super(new Shader("player.vert", "player.frag"), location, new Vector2d(Game.PLAYER_SIZE, Game.PLAYER_SIZE));
 	
-		sprite = Tile.PLAYER_RIGHT;
+		this.effects = new PlayerEffect(this);
+		this.sprite = Tile.PLAYER_RIGHT;
+		
 		if(Game.LEVEL_BUILDER){
 			STANDARD_VELOCITY = 0.5f;
 		}else{
@@ -143,7 +146,7 @@ public class Player extends LivingEntity{
 				Game.world.setTile(location.getX(), location.getY(), 11);
 			}else if(Keyboard.isKeyDown(Keyboard.KEY_2)){
 				Game.world.setTile(location.getX(), location.getY(), 12);
-			}else if(Keyboard.isKeyDown(Keyboard.KEY_3)){
+			}else if(Keyboard.isKeyDown(Keyboard.KEY_LBRACKET)){
 				Game.world.setTile(location.getX(), location.getY(), 13);
 			}else if(Keyboard.isKeyDown(Keyboard.KEY_4)){
 				Game.world.setTile(location.getX(), location.getY(), 14);
@@ -178,11 +181,23 @@ public class Player extends LivingEntity{
 			if(Game.world.isDigableTile(Game.world.getTile(this.location.getX(), this.location.getY() - 1))){
 				Game.world.setTile(this.location.getX(), this.location.getY() - 1, Tile.AIR.getId());
 			}
+		}else if(Keyboard.isKeyDown(Keyboard.KEY_UP)){
+			if(Game.world.isDigableTile(Game.world.getTile(this.location.getX(), this.location.getY() + 1))){
+				Game.world.setTile(this.location.getX(), this.location.getY(), Tile.AIR.getId());
+			}
+		}else if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){
+			if(Game.world.isDigableTile(Game.world.getTile(this.location.getX() - 1, this.location.getY()))){
+				Game.world.setTile(this.location.getX() + 1, this.location.getY(), Tile.AIR.getId());
+			}
+		}else if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
+			if(Game.world.isDigableTile(Game.world.getTile(this.location.getX() -1 , this.location.getY()))){
+				Game.world.setTile(this.location.getX() - 1, this.location.getY(), Tile.AIR.getId());
+			}
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_L)){
 			Game.LEVEL_BUILDER = !Game.LEVEL_BUILDER;
-			Player.STANDARD_VELOCITY = (Player.STANDARD_VELOCITY == 1f ? .5f : 1f);
+			this.STANDARD_VELOCITY = (this.STANDARD_VELOCITY == 1f ? .5f : 1f);
 		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_I)){

@@ -44,6 +44,12 @@ public class Chunk {
 	 * is much simpler and more efficient.
 	 */
 	private int[][] tiles = new int[(int)Game.CHUNK_SIZE][(int)Game.CHUNK_SIZE];
+	
+	private int[][] backgroundTiles = new int[(int)Game.CHUNK_SIZE][(int)Game.CHUNK_SIZE];
+	
+	/**
+	 * This is an array holding the current stages of all the animated tiles in the chunk.
+	 */
 	private int[][] tileAnimationStages = new int[(int)Game.CHUNK_SIZE][(int)Game.CHUNK_SIZE];
 	
 	/**
@@ -189,6 +195,10 @@ public class Chunk {
 		 */
 		for(int x = 0; x < Game.CHUNK_SIZE; x++){
 			for(int y = 0; y < Game.CHUNK_SIZE; y++){
+				if(backgroundTiles[x][y] != 0){
+					Tile.draw((int)(x + position.x), (int)(y + position.y), backgroundTiles[x][y], 1);
+				}
+				
 				/**
 				 * If the tile isn't air, run the OpenGL commands to draw a tile with id of tiles.
 				 */
@@ -247,7 +257,8 @@ public class Chunk {
 	}
 	
 	/**
-	 * This method updates any part of the chunk needed.
+	 * Update the chunk, triggering animations.
+	 * @param tick Sanity check: if true update, otherwise don't.
 	 */
 	public void update(boolean tick){
 		if(tick){
@@ -269,7 +280,7 @@ public class Chunk {
 	}
 	
 	/**
-	 * Destroys the chunk.
+	 * Destroys the chunk by deleting rendering list.
 	 */
 	public void dispose(){
 		/**
@@ -309,6 +320,20 @@ public class Chunk {
 		return tiles[x][y];
 	}
 	
+	public int getBackgroundTile(int x, int y){
+		/**
+		 * Basically this is a failsafe to ensure that we don't get an IndexArrayOutOfBounds exception.
+		 * If the x or y given is greater than 15, or x or y < 0, then return 0.
+		 */
+		if(x > 15 || y > 15 || x < 0 || y < 0){
+			return 0;
+		}
+		
+		/**
+		 * Return the tile id at the (x, y) location.
+		 */
+		return backgroundTiles[x][y];
+	}
 	/**
 	 * Set a tile at (x, y) with type type.
 	 * @param x The X-coordinate to place a tile at.
@@ -329,6 +354,31 @@ public class Chunk {
 		 */
 		tiles[x][y] = type;
 		
+		/**
+		 * If the tile is an animated tile, make sure we save it to the list.
+		 */
+		if(Tile.getTile(type) instanceof AnimatedTile){
+			tileAnimationStages[x][y] = 0;
+		}
+	}
+	
+	public void setBackgroundTile(int x, int y, int type){
+		/**
+		 * Basically this is a failsafe to ensure that we don't get an IndexArrayOutOfBounds exception.
+		 * If the x or y given is greater than 15, or x or y < 0, then return 0.
+		 */
+		if(x > 15 || y > 15 || x < 0 || y < 0){
+			return;
+		}
+		
+		/**
+		 * Set the tile id at (x, y) to type.
+		 */
+		backgroundTiles[x][y] = type;
+		
+		/**
+		 * If the tile is an animated tile, make sure we save it to the list.
+		 */
 		if(Tile.getTile(type) instanceof AnimatedTile){
 			tileAnimationStages[x][y] = 0;
 		}
@@ -358,10 +408,20 @@ public class Chunk {
 		this.state = state;
 	}
 	
+	/**
+	 * Get all the tiles in the chunk.
+	 * @return An array of tile ids.
+	 */
 	public int[][] getTiles(){
 		return tiles;
 	}
 
+	/**
+	 * Get a tile as an AABB object.
+	 * @param x The X-coordinate of the tile.
+	 * @param y The Y-coordinate of the tile.
+	 * @return An AABB object for the tile.
+	 */
 	public AABB getTileAsAABB(int x, int y){
 		return new AABB(new Vector2d(x + this.position.x, y + this.position.y), new Vector2d(Game.TILE_SIZE, Game.TILE_SIZE));
 	}

@@ -24,10 +24,6 @@ public abstract class Tile {
 	 * These are instances of all the tiles.
 	 */
 	public static Tile AIR = new TileAir();
-	
-	/**
-	 * TODO: Add these tiles textures.
-	 */
 	public static Tile STARS_WITH_PLANET = new TileStarsPlanet();
 	public static Tile STARS_NO_PLANET = new TileStars();
 	public static Tile STEEL = new TileSteel();
@@ -43,6 +39,7 @@ public abstract class Tile {
 	public static Tile SANDSTONE = new TileSandstone();
 	public static Tile CHAIN_LEFT = new TileChainLeft();
 	public static Tile CHAIN_RIGHT = new TileChainRight();
+	public static Tile DOOR = new TileDoor();
 	
 	public static Tile PLAYER_LEFT = new TilePlayerLeft();
 	public static Tile PLAYER_RIGHT = new TilePlayerRight();
@@ -56,25 +53,25 @@ public abstract class Tile {
 	public abstract float[] getTextureCoordinates();
 
 	static{
-		tileMap.put(0, AIR);
-		tileMap.put(1, STARS_WITH_PLANET);
-		tileMap.put(2, STARS_NO_PLANET);
-		tileMap.put(3, STEEL);
-		tileMap.put(4, SPACE_DOOR_CLOSED);
-		tileMap.put(5, SPACE_DOOR_ONE_THIRD);
-		tileMap.put(6, SPACE_DOOR_TWO_THIRDS);
-		tileMap.put(7, SPACE_DOOR_OPEN);
-		tileMap.put(8, ITEM_SLOT);
-		tileMap.put(9, ITEM_KEY);
-		tileMap.put(10, KEY_PICKUP);
-		tileMap.put(11, SANTA_PRESENT);
-		tileMap.put(12, SAND);
-		tileMap.put(13, SANDSTONE);
-		tileMap.put(14, CHAIN_LEFT);
-		tileMap.put(15, CHAIN_RIGHT);
-		
-		tileMap.put(901, PLAYER_LEFT);
-		tileMap.put(900, PLAYER_RIGHT);
+		Tile.registerTile(0, AIR);
+		Tile.registerTile(1, STARS_WITH_PLANET);
+		Tile.registerTile(2, STARS_NO_PLANET);
+		Tile.registerTile(3, STEEL);
+		Tile.registerTile(4, SPACE_DOOR_CLOSED);
+		Tile.registerTile(5, SPACE_DOOR_ONE_THIRD);
+		Tile.registerTile(6, SPACE_DOOR_TWO_THIRDS);
+		Tile.registerTile(7, SPACE_DOOR_OPEN);
+		Tile.registerTile(8, ITEM_SLOT);
+		Tile.registerTile(9, ITEM_KEY);
+		Tile.registerTile(10, KEY_PICKUP);
+		Tile.registerTile(11, SANTA_PRESENT);
+		Tile.registerTile(12, SAND);
+		Tile.registerTile(13, SANDSTONE);
+		Tile.registerTile(14, CHAIN_LEFT);
+		Tile.registerTile(15, CHAIN_RIGHT);
+		Tile.registerTile(16, DOOR);
+		Tile.registerTile(901, PLAYER_LEFT);
+		Tile.registerTile(900, PLAYER_RIGHT);
 	}
 	
 	/**
@@ -84,6 +81,10 @@ public abstract class Tile {
 	 */
 	public static Tile getTile(int id){
 		return tileMap.get(id) != null ? tileMap.get(id) : tileMap.get(0);
+	}
+	
+	public static void registerTile(int id, Tile tile){
+		tileMap.putIfAbsent(id, tile);
 	}
 	
 	/**

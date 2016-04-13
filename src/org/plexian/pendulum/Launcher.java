@@ -178,8 +178,8 @@ public class Launcher extends JFrame{
 						/**
 						 * Insert the world name into the file.
 						 */
-						Game.CONFIG.getRootSection().put("world.name", World.WORLD_NAMES[new Random().nextInt(World.WORLD_NAMES.length - 1)]);
-						Game.CONFIG.getRootSection().put("setup", true);
+						//Game.CONFIG.getRootSection().put("world.name", World.WORLD_NAMES[new Random().nextInt(World.WORLD_NAMES.length - 1)]);
+						//Game.CONFIG.getRootSection().put("setup", true);
 						Game.CONFIG.save();
 					}catch(Exception e){
 						e.printStackTrace();
