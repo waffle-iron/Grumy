@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/ThePlexianNetwork/Grumy.png?label=ready&title=Ready)](https://waffle.io/ThePlexianNetwork/Grumy)
 # Grumy
 
 ## Introduction
