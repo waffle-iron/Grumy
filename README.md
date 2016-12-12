@@ -1,6 +1,16 @@
-# Introduction
-Hello and welcome to the Pendulum repository!
+# Grumy
 
-Basically, this is the repository for Pendulum. All the code and assets for the game are stored here. Honestly you won't find much about the plans here, instead check in the [Pendulum category](http://plexian.org/c/pendulum) on the [Plexian website](http://plexian.org).
+## Introduction
 
-This code is all written by the Plexian Programming team, and uploaded here. Check out the [nightly builds](http://files.plexian.org/Pendulum/nightly).
+Grumy is a simple 2D tile based game about placing and breaking tiles. From 
+physics to character sprites, Grumy tries to be unique and simple.
+
+## Building
+
+Currently everything you need to build Grumy is included in this repository.
+All you need to do is clone it and press the "Run" button in Eclipse.
+
+*Please note that all the neccesiary libraries and natives are loaded at runtime
+by the launcher. Just make sure that the "lib" folder is available in the Grumy
+directory*
+

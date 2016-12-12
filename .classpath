@@ -2,6 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="/home/walt/Desktop/Code-Projects/lwjgl/jar/lwjgl.jar"/>
+	<classpathentry kind="lib" path="lib/lwjgl/jar/lwjgl.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/walt/Desktop/workspac/Grumy/lib/lwjgl/javadoc/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Grumy/lib/lwjgl/linux"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/lwjgl/jar/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="lib/nbt.com.evilco.mc-1.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="assets"/>
+	<classpathentry kind="lib" path="lib/snakeyaml-1.16.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
